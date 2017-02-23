@@ -10,7 +10,7 @@ myApp.set('layout', 'layouts/main-layout');
 myApp.use(expressLayouts);
 
 
-myApp.get('/home', (req, res, next) => {
+myApp.get('/', (req, res, next) => {
   res.render('home');
 });
 
@@ -20,6 +20,20 @@ myApp.get('/about', (req, res, next) => {
 
 myApp.get('/contactus', (req, res, next) => {
   res.render('contactus');
+});
+
+myApp.get('/celebrity', (req, res, next) => {
+  const bday = new Date(1984, 4, 14);
+  const today = new Date();
+
+  const celebrity = today.getFullYear() - bday.getFullYear();
+  const monthsUntilBday = bday.getMonth() - today.getMonth();
+
+
+  res.render('celebrity', {
+    age: celebrity,
+    months: monthsUntilBday
+  });
 });
 
 myApp.get('/display-user-info', (req, res, next) => {
